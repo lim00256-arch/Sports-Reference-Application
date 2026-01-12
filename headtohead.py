@@ -7,12 +7,16 @@ with open('records.json', 'r') as file:
 teams = sorted(data.keys())
 num_teams = len(teams)
 
-matrix = [['' for _ in range(num_teams + 1)] for _ in range(num_teams + 1)]
+matrix = [['' for _ in range(num_teams + 1)] for _ in range(num_teams + 2)]
 
 # fill in the labels
 for i in range(num_teams):
     matrix[0][i + 1] = teams[i]
     matrix[i + 1][0] = teams[i]
+
+matrix[num_teams + 1][0] = "Tm"
+for i in range(num_teams):
+    matrix[num_teams + 1][i + 1] = teams[i]
 
 for i in range(num_teams):
     for j in range(num_teams):
@@ -25,7 +29,7 @@ for i in range(num_teams):
 
 matrix[0][0] = "  "
 
-for i in range(num_teams + 1):
+for i in range(num_teams + 2):
     for j in range(num_teams + 1):
         cell = matrix[i][j]
         # empty cell
